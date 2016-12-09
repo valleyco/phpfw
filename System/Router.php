@@ -4,13 +4,12 @@ namespace System;
 
 class Router {
 
-    private $server, $request, $get, $post;
+    private $server, $get, $post;
     private $defaultController = 'home';
     private $defaultAction = 'index';
 
-    function __construct(array $server, array $request, $get, $post) {
+    function __construct(array $server, $get, $post) {
         $this->server = $server;
-        $this->request = $request;
         $this->get = $get;
         $this->post = $post;
     }
