@@ -12,7 +12,7 @@ json_encode(
 $defaultController = 'home';
 $defaultAction = 'index';
 
-$parts =  split('/', $uri_parts['path']);
+$parts =  explode('/', $uri_parts['path']);
 
 array_shift($parts);
 
@@ -36,7 +36,7 @@ switch (count($parts)) {
         break;
 }
 
-$controllerClass = ucfirst(strtolower($controllerName)) . 'Controller';
+$controllerClass = 'Controller\\'.ucfirst(strtolower($controllerName)) . 'Controller';
 
 $controller = new $controllerClass;
 
@@ -45,7 +45,7 @@ $controller->$action($parts);
 
 
 function __autoloader($class_name){
-    include $class_name.'.php';
+    include str_replace('\\', '/', $class_name).'.php';
 }
 
 
