@@ -1,10 +1,13 @@
 <?php
 
-spl_autoload_register('__autoloader');
+spl_autoload_register(function($class_name) {
+    $filename = str_replace('\\', '/', $class_name) . '.php';
+    if (file_exists($filename)) {
+        include $filename;
+    }
+});
 
-function __autoloader($class_name) {
-    include str_replace('\\', '/', $class_name) . '.php';
-}
+define('APP_PATH', dirname(__DIR__));
 
 if ( ! function_exists('getallheaders')) {
 

@@ -44,9 +44,10 @@ class Router {
         if ( ! class_exists($controllerClass) || ! method_exists($controllerClass, $actionName)) {
             return false;
         }
+        
         $controller = new $controllerClass;
-
-        $controller->$actionName($parts);
+        
+        call_user_func_array([$controller, $actionName], $parts);
     }
 
 }

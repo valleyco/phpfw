@@ -1,10 +1,17 @@
 <?php
+
 namespace Controller;
 
 class HomeController {
 
+    private $view;
+
+    function __construct() {
+        $this->view = new \System\View(APP_PATH . '/View');
+    }
+
     function index() {
-        echo 
+        echo
         "<html>
         <head>
          <title>this is the title</title>
@@ -17,9 +24,13 @@ class HomeController {
        </html>";
     }
 
+    function hello($name = 'World') {
+        $this->view->render('Home/hello.php', ['name' => $name], FALSE);
+    }
+
     function say() {
         echo
-       "<html>
+        "<html>
             <head>
              <title>this is the title</title>
             </head>
