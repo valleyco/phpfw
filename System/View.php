@@ -1,6 +1,6 @@
 <?php
 
-namespace System;
+namespace Valleyco\Phpfw\System;
 
 /**
  * Description of View

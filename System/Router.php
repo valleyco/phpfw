@@ -1,6 +1,6 @@
 <?php
 
-namespace System;
+namespace Valleyco\Phpfw\System;
 
 class Router {
 
@@ -16,13 +16,8 @@ class Router {
 
     function __invoke() {
         $uri_parts = parse_url($this->server['REQUEST_URI']);
-        $parts = explode('/', $uri_parts['path']);
-
-        array_shift($parts);
-
-        if ($parts && ! $parts[0]) {
-            $parts = [];
-        }
+        $clean_uri = trim($uri_parts['path'], '/');
+        $parts = $clean_uri ? explode('/', $clean_uri) : [];
 
         switch (count($parts)) {
             case 0:
@@ -39,7 +34,7 @@ class Router {
                 break;
         }
 
-        $controllerClass = 'Controller\\' . ucfirst(strtolower($controllerName)) . 'Controller';
+        $controllerClass = 'Valleyco\\Phpfw\\Controller\\' . ucfirst(strtolower($controllerName)) . 'Controller';
 
         if ( ! class_exists($controllerClass) || ! method_exists($controllerClass, $actionName)) {
             return false;
