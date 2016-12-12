@@ -1,16 +1,12 @@
 <?php
 
-namespace Controller;
+namespace Valleyco\Phpfw\Controller;
 
-class HomeController {
+use Valleyco\Phpfw\System\Controller;
 
-    private $view;
+class HomeController extends Controller {
 
-    function __construct() {
-        $this->view = new \System\View(APP_PATH . '/View');
-    }
-
-    function index() {
+    function index($name = 'World') {
         echo
         "<html>
         <head>
@@ -18,7 +14,7 @@ class HomeController {
         </head>
         <body>
 
-         <h1>Hello World</h1>
+         <h1>Hello $name</h1>
 
         </body>
        </html>";

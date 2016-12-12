@@ -1,10 +1,14 @@
 <?php
+
 define('APP_PATH', dirname(__DIR__));
 
 spl_autoload_register(function($class_name) {
-    $filename = APP_PATH.'/'.str_replace('\\', '/', $class_name) . '.php';
-    if (file_exists($filename)) {
-        include $filename;
+    $prefix = 'Valleyco\\Phpfw\\';
+    if (substr($class_name, 0, strlen($prefix)) === $prefix) {
+        $filename = APP_PATH . '/' . str_replace('\\', '/', substr($class_name, strlen($prefix))) . '.php';
+        if (file_exists($filename)) {
+            include $filename;
+        }
     }
 });
 

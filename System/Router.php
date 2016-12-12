@@ -1,6 +1,6 @@
 <?php
 
-namespace System;
+namespace Valleyco\Phpfw\System;
 
 class Router {
 
@@ -34,7 +34,7 @@ class Router {
                 break;
         }
 
-        $controllerClass = 'Controller\\' . ucfirst(strtolower($controllerName)) . 'Controller';
+        $controllerClass = 'Valleyco\\Phpfw\\Controller\\' . ucfirst(strtolower($controllerName)) . 'Controller';
 
         if ( ! class_exists($controllerClass) || ! method_exists($controllerClass, $actionName)) {
             return false;
